@@ -52,6 +52,7 @@
 	text-align: center;
 	text-transform: uppercase;
 	transition: all 250ms;
+	text-decoration: none;
 }
 
 .homehero .button:hover {
@@ -72,4 +73,16 @@
 	font-size: 24px;
 	color: #646464;
 	letter-spacing: 0.17px;
+}
+
+
+
+.wrap,
+#map {
+	height: 100vh;
+	width: 100%	;
+}
+
+#ui {
+
 }

@@ -7,7 +7,8 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-	this.route('index', { path: '/' });
+  this.route('index', { path: '/' });
+  this.route('view-spots');
 });
 
 export default Router;

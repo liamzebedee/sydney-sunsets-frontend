@@ -7,6 +7,9 @@ module.exports = function(defaults) {
   });
 
   app.import('app/styles/normalise.css');
+  app.import('vendor/ol.js');
+  app.import('vendor/ol.css');
+
 
   // Use `app.import` to add additional libraries to the generated
   // output files.
