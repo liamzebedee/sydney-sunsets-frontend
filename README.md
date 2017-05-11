@@ -6,7 +6,6 @@ Install [Yarn](https://yarnpkg.com/lang/en/) instead of sucky NPM.
 ```
 npm install -g ember-cli
 cd app
-yarn install
 ember server
 open http://localhost:4200
 ```

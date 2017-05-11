@@ -42,6 +42,5 @@
   },
   "private": true,
   "dependencies": {
-    "openlayers": "^4.1.1"
   }
 }
