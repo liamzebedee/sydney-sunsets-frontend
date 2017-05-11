@@ -39,3 +39,5 @@ publish_to_bower/
 bower_components/
 npm-debug.log
 .ember-cli
+mapbox-gl-js
+app/vendor/mapbox-gl-mod.js
