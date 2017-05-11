@@ -1,68 +1,86 @@
 <div class='wrap'>
 	<div id="map"></div>
-	<div id='ui'></div>
+	<div id='ui'>
+		<div class='inner'>
+			<h1>Sydney Sunsets</h1>
+			
+		</div>
+	</div>
 </div>
 
 <script type="text/javascript">
 var SYDNEY_LNGLAT = [151.2093, -33.8688];
 
 $(document).ready(function() {
-	var map = new ol.Map({
-		controls: [],
-	    target: 'map',
-	    layers: [
-	      new ol.layer.Tile({
-	        source: new ol.source.OSM()
-	      })
-	    ],
-	    view: new ol.View({
-	      center: ol.proj.fromLonLat(SYDNEY_LNGLAT),
-	      zoom: 15
-	    })
-	  });
 
-	  var layer_cloud = new ol.layer.Tile({
-	    title: "Clouds",
-	    source: new ol.source.XYZ({
-	        // Replace this URL with a URL you generate. To generate an ID go to http://home.openweathermap.org/
-	        // and click "map editor" in the top right corner. Make sure you're registered!
-	        // url: 'http://maps.owm.io:8091/59114a075dd7350001431d5c/{z}/{x}/{y}?hash=35f4b34fcc494b076f8a361e15785c0e',
-	        url: 'http://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=01458f9ac1bb039bc50511ad57522f92',
-	        tileOptions: {
-	            crossOriginKeyword: 'anonymous'
-	        },
-	        opacity: 0.2,
-	        crossOrigin: null
-	    }),
-	});
-  // map.addLayer(layer_cloud);	
+	var $map = 'map';
+// https://medium.com/@Scarysize/data-driven-raster-layer-with-mapbox-gl-bdb3b747ae22
+
+	function setupMapboxMaps() {
+		mapboxgl.accessToken = 'pk.eyJ1IjoibGlhbXplYmVkZWUiLCJhIjoiY2oyaWFmdXpxMDFlMTJwcjd4cTdieDdyMiJ9.K8da3SqjRr8_XDRxbrT1zQ';
+		var map = new mapboxgl.Map({
+			container: $map,
+			style: 'mapbox://styles/mapbox/streets-v9',
+			center: SYDNEY_LNGLAT,
+			zoom: 13
+		});
+
+		map.on('load', function () {
+		    // map.addSource('clouds', {
+		    //     type: 'raster',
+		    //     tiles: ['http://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=01458f9ac1bb039bc50511ad57522f92'],
+		    //     tileSize: 256
+		    // });
+		    
+		    // map.addLayer({
+		    //     'id': 'cloud-layer',
+		    //     'type': 'raster',
+		    //     // 'type': 'fill',
+		    //     'source': 'clouds',
+		    //     'layout': {
+		    //         'visibility': 'visible'
+		    //     },
+		    //     "paint": {
+		    //     	"raster-opacity": 0.5,
+		    //     	// "raster-contrast": 1,
+		    //     	// "raster-saturation": 1,
+		    //     	// "raster-brightness-min": 0.5,
+		    //     	// "raster-brightness-max": 0.5
+
+			   //      // "property": "cloudCover",
+			   //      // "type": "interval",
+		    //     	// "fill-color": {
+		    //     	// 	"stops": [
+		    //     	// 	]
+		    //     	// }
+		    //     }
+		    // });
+		});
+	}
+
+	setupMapboxMaps()
+
 });
 
 
-function initMap() {
-  
-}
-</script>
+function initMap() {}
 
-<!-- // https://github.com/mapnik/mapnik/wiki/RasterColorizer
-NEED TO USE THIS
+// https://github.com/mapnik/mapnik/wiki/RasterColorizer
+// https://bl.ocks.org/lbud/ee919cb9cf265c635e2adc899b65dbbb
+// https://medium.com/@Scarysize/data-driven-raster-layer-with-mapbox-gl-bdb3b747ae22
+// NEED TO USE THIS
 
-https://openlayers.org/en/latest/examples/raster.html
+
+// lookup table of RGBAx10 to Pixel
+
+// https://openlayers.org/en/latest/examples/raster.html
 // For clouds
 // {
-//  		stop(0, rgba(255, 255, 255, 0.0))
-// 		stop(10, rgba(253, 253, 255, 0.1))
-// 		stop(20, rgba(252, 251, 255, 0.2))
-// 		stop(30, rgba(250, 250, 255, 0.3))
-// 		stop(40, rgba(249, 248, 255, 0.4))
-// 		stop(50, rgba(247, 247, 255, 0.5))
-// 		stop(60, rgba(246, 245, 255, 0.75))
-// 		stop(70, rgba(244, 244, 255, 1))
-// 		stop(80, rgba(243, 242, 255, 1))
-// 		stop(90, rgba(242, 241, 255, 1))
-// 		stop(100, rgba(240, 240, 255, 1));   
     
-// } -->
+// }
+</script>
+
+
 
 
 
