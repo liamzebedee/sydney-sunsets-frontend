@@ -16,6 +16,36 @@ var SYDNEY_LNGLAT = [151.2093, -33.8688];
 $(document).ready(function() {
 	var $map = 'map';
 
+	var API = {};
+	API.getSpots = function(lat, lng, bounds) {
+		var sampleSpots = [{lng: 151.21468936436338, lat: -33.85667594669833},
+			{lng: 151.21023865813532, lat: -33.855094719359485},
+			{lng: 151.21774482209128, lat: -33.8519681430416},
+			{lng: 151.20358974060105, lat: -33.84992948155219},
+			{lng: 151.2232737923265, lat: -33.84579485048061},
+			{lng: 151.1951994855155, lat: -33.86305317723418}];
+
+		sampleSpots.forEach(spot => {
+			spot.id = 1;
+			spot.altitude = 100;
+		})
+
+		// Bounds is the bounding box of the map
+		// Idk if this will be useful or not, but we could use it to track where people are looking.
+		// {
+		//  "_sw": {
+		//   "lng": 151.14814563440473,
+		//   "lat": -33.89559202919046
+		//  },
+		//  "_ne": {
+		//   "lng": 151.27045436548815,
+		//   "lat": -33.841999559490574
+		//  }
+		// }
+
+		return sampleSpots;
+	}
+
 	function setupMapboxMaps() {
 		mapboxgl.accessToken = 'pk.eyJ1IjoibGlhbXplYmVkZWUiLCJhIjoiY2oyaWFmdXpxMDFlMTJwcjd4cTdieDdyMiJ9.K8da3SqjRr8_XDRxbrT1zQ';
 		var map = new mapboxgl.Map({
@@ -108,13 +138,10 @@ $(document).ready(function() {
 			});
 			map.addLayer(sunsetSpotsLayer)
 
-			var testingSpots = [{lng: 151.21468936436338, lat: -33.85667594669833},
-			{lng: 151.21023865813532, lat: -33.855094719359485},
-			{lng: 151.21774482209128, lat: -33.8519681430416},
-			{lng: 151.20358974060105, lat: -33.84992948155219},
-			{lng: 151.2232737923265, lat: -33.84579485048061},
-			{lng: 151.1951994855155, lat: -33.86305317723418}];
+			var testingSpots = API.getSpots();
 			testingSpots.map(addSpot);
+
+			// console.log(JSON.stringify(map.getBounds(), null, 1))
 
 			map.on('click', function (e) {
 				// console.log(e.lngLat)
