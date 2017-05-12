@@ -3,7 +3,9 @@
 	<div id='ui'>
 		<div class='inner'>
 			<h1>Sydney Sunsets</h1>
-			
+			<div class='info'>
+				<span><img src='assets/sunset-bare.svg'/> Sunset at 4:50pm</span>
+			</div>
 		</div>
 	</div>
 </div>
@@ -12,9 +14,7 @@
 var SYDNEY_LNGLAT = [151.2093, -33.8688];
 
 $(document).ready(function() {
-
 	var $map = 'map';
-// https://medium.com/@Scarysize/data-driven-raster-layer-with-mapbox-gl-bdb3b747ae22
 
 	function setupMapboxMaps() {
 		mapboxgl.accessToken = 'pk.eyJ1IjoibGlhbXplYmVkZWUiLCJhIjoiY2oyaWFmdXpxMDFlMTJwcjd4cTdieDdyMiJ9.K8da3SqjRr8_XDRxbrT1zQ';
@@ -37,9 +37,6 @@ $(document).ready(function() {
 		    //     'type': 'raster',
 		    //     // 'type': 'fill',
 		    //     'source': 'clouds',
-		    //     'layout': {
-		    //         'visibility': 'visible'
-		    //     },
 		    //     "paint": {
 		    //     	"raster-opacity": 0.5,
 		    //     	// "raster-contrast": 1,
@@ -55,7 +52,78 @@ $(document).ready(function() {
 		    //     	// }
 		    //     }
 		    // });
+		
+
+			map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
+			map.addControl(new mapboxgl.GeolocateControl(), 'bottom-right');
+
+
+			var sunsetSpotsLayer = {
+				id: 'sunsetSpots',
+				type: 'symbol',
+				source: "sunsetSpots",
+			};
+			var sunsetSpotsSource = {
+		       type: "FeatureCollection",
+		       features: []
+			}
+
+			function addSpot(lngLat) {
+				let spot = {
+			      "type": "Feature",
+			      "properties": {
+			      	"name": "Null Island"
+			      },
+			      "geometry": {
+			          "type": "Point",
+			          "coordinates": lngLat
+			      }
+			  	};
+
+			  	sunsetSpotsSource.features.push(spot);
+
+			  	map.getSource('sunsetSpots').setData(sunsetSpotsSource);
+
+			  	var el = document.createElement('div');
+			    el.className = 'sunset-spot';
+			    el.style.backgroundImage = 'url(/assets/Sunset/v3.svg)';
+			    el.style.backgroundSize = 'cover';
+			    var heightWidth = 32;
+			    el.style.height = heightWidth+'px';
+			    el.style.width = heightWidth+'px';
+
+			    el.addEventListener('click', function(e) {
+					map.flyTo({center: lngLat});
+			    });
+
+		        let marker = new mapboxgl.Marker(el, {offset: [-heightWidth / 2, -heightWidth / 2]}).setLngLat(lngLat);
+			    marker.addTo(map);
+			}
+
+
+
+			map.addSource('sunsetSpots', {
+				type: 'geojson',
+				data: sunsetSpotsSource
+			});
+			map.addLayer(sunsetSpotsLayer)
+
+			var testingSpots = [{lng: 151.21468936436338, lat: -33.85667594669833},
+			{lng: 151.21023865813532, lat: -33.855094719359485},
+			{lng: 151.21774482209128, lat: -33.8519681430416},
+			{lng: 151.20358974060105, lat: -33.84992948155219},
+			{lng: 151.2232737923265, lat: -33.84579485048061},
+			{lng: 151.1951994855155, lat: -33.86305317723418}];
+			testingSpots.map(addSpot);
+
+			map.on('click', function (e) {
+				// console.log(e.lngLat)
+			    // addSpot(e.lngLat)
+		    });
+
 		});
+
+
 	}
 
 	setupMapboxMaps()
