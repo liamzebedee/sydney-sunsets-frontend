@@ -89,6 +89,7 @@
   },
   "dependencies": {
     "mapbox-gl": "^0.37.0",
+    "moment": "^2.18.1",
     "normalize.css": "^7.0.0",
     "preact": "^8.1.0",
     "preact-compat": "^3.16.0",
@@ -97,7 +98,8 @@
     "promise-polyfill": "^6.0.2",
     "proptypes": "^1.0.0",
     "react-mapbox-gl": "^1.11.0",
-    "serve": "^5.1.4"
+    "serve": "^5.1.4",
+    "suncalc": "^1.8.0"
   },
   "main": "webpack.config.babel.js",
   "directories": {

@@ -5,9 +5,11 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 
+import SunCalc from 'suncalc';
+import moment from 'moment';
+
+
 import style from './style.less';
-
-
 
 const SYDNEY_LNGLAT = [151.2093, -33.8688];
 
@@ -17,9 +19,15 @@ class UIOverlay extends Component {
 	}
 }
 
+// https://www.npmjs.com/package/suncalc#sun-position
+// https://en.wikipedia.org/wiki/Azimuth
+let times = SunCalc.getTimes(new Date, SYDNEY_LNGLAT[1], SYDNEY_LNGLAT[0]);
+let sunsetTime_date = times.sunsetStart;
+let sunsetTime = moment(sunsetTime_date).format('h:mm a')
+
 class Header extends Component {
 	state = {
-		sunsetTime: "4:50pm"
+		sunsetTime: sunsetTime
 	}
 
 	render(props, state) {
