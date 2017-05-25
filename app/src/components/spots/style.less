@@ -1,0 +1,94 @@
+.uiOverlay {
+	position: absolute;
+    pointer-events: none;
+    z-index: 2;
+    
+    width: 100%;
+}
+
+// pointer-events: auto;
+
+.header {
+	display: flex;
+	flex-direction: row;
+	height: 60px;
+
+	justify-content: space-between;
+	align-items: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 34px;
+	padding-right: 34px;
+
+	background-image: linear-gradient(-177deg, #8278DB 0%, #EF8081 100%);
+	opacity: 0.97;
+	box-shadow: 0 2px 8px 1px rgba(33,33,33,0.50);
+}
+.headerLeft {
+	//align-self: flex-start;
+}
+.headerRight {
+	//align-self: flex-end;
+}
+
+.sunsetAt {
+	display: inline-block;
+	padding-left: 8px;
+}
+.sunsetAt_icon {
+	width: 32px;
+	height: 24.5px;
+	color: white;
+	display: inline-block;
+}
+.sunsetAt_label {
+	/* sunset at: */
+	font-family: HelveticaNeue-Bold;
+	font-size: 12px;
+	color: #FFFFFF;
+	letter-spacing: 0.06px;
+	text-transform: uppercase;
+
+	line-height: 15px;
+}
+
+.sunsetAt_time {
+	/* 4:50 PM: */
+	font-family: HelveticaNeue-Bold;
+	font-size: 16px;
+	color: #FFFFFF;
+	letter-spacing: 0.08px;
+	text-transform: uppercase;
+
+	line-height: 19px;
+}
+
+.appInfo {
+	display: flex;
+	align-items: center;
+}
+
+.appInfo_title {
+	/* Sydney Sunsets: */
+	font-family: AdobeGothicStd-Bold;
+	font-size: 28px;
+	color: #FFFFFF;
+	letter-spacing: 0.1px;
+}
+
+.appInfo_beta {
+	/* BETA: */
+	font-family: Helvetica;
+	font-size: 13px;
+	color: #FFFFFF;
+	letter-spacing: 0.09px;
+
+	text-transform: uppercase;
+
+	padding-left: 10px;
+    padding-top: 2px;
+}
+
+.sunsetIcon {
+	background: #FFFFFF;
+}
