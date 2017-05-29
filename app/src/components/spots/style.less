@@ -12,7 +12,12 @@ body {
     width: 100%;
 }
 
-// pointer-events: auto;
+.headerCtn {
+    background: url(/assets/Background.png);
+    background-size: 100vw 60px;
+    background-origin: content-box;
+    background-repeat: no-repeat;
+}
 
 .header {
 	display: flex;
@@ -26,10 +31,10 @@ body {
 	padding-left: 34px;
 	padding-right: 34px;
 
-	background-image: linear-gradient(-177deg, #8278DB 0%, #EF8081 100%);
-	opacity: 0.97;
+	opacity: 1;
 	box-shadow: 0 2px 8px 1px rgba(33,33,33,0.50);
 }
+
 .headerLeft {
 	//align-self: flex-start;
 }
@@ -106,5 +111,9 @@ body {
 		pointer-events: auto;
 		cursor: pointer;
 	}
+}
+
+.clusterLabel {
+	text-align: center;
 }
 

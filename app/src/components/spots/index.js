@@ -39,7 +39,7 @@ class Header extends Component {
 	}
 
 	render(props, state) {
-		return <div class={style.header}>
+		return <div class={style.headerCtn}><div class={style.header}>
 			<div class={style.headerLeft}>
 				<div class={style.appInfo}>
 					<span class={style.appInfo_title}>Sydney Sunsets</span>
@@ -54,7 +54,7 @@ class Header extends Component {
 					<span class={style.sunsetAt_time}>{state.sunsetTime}</span>
 				</div>
 			</div>
-		</div>;
+		</div></div>;
 	}
 }
 
@@ -64,8 +64,9 @@ class Map extends Component {
 	map = null;
 
 	state = {
-		selectedSpot: null,
-		center: SYDNEY_LNGLAT
+		selectedSpots: {},
+		center: SYDNEY_LNGLAT,
+		spotSelected: false
 	};
 
 	clusterMarker = (coordinates, clusterSize) => {
@@ -91,20 +92,33 @@ class Map extends Component {
 	}
 
 	goToSpotCluster = (spotCluster) => {
-		this.setState({
+		this.map.flyTo({ 
 			center: spotCluster.coordinates,
-		})
+			zoom: this.map.getZoom() + 1
+		});
 	}
 
+	// TODO: rename goToSpot as onSpotClick
+	// this is the intention, but this is what it does during the method
+	// vs reading the code top-to-bottom and understanding it this way
 	goToSpot = (spot) => {
+		const MARKER_HEIGHT = 40;
+		const POPUP_HEIGHT = 360;
+
 		let { x, y } = this.map.project(spot.coordinates);
-		y -= 200;
+		y -= POPUP_HEIGHT / 2;
 		let centerOffsetForPopup = this.map.unproject({ x, y })
 
-		this.setState({
-			center: centerOffsetForPopup,
-			selectedSpot: spot,
-		});
+		this.map.flyTo({ center: centerOffsetForPopup });
+
+		let selectedSpots = this.state.selectedSpots;
+		selectedSpots[spot.coordinates.x] = spot;
+
+		this.setState({ selectedSpots });
+	}
+
+	onClick = (map, event) => {
+		console.log(event.lngLat);
 	}
 
 	onZoom = (map, event) => {
@@ -123,10 +137,11 @@ class Map extends Component {
 				accessToken='pk.eyJ1IjoibGlhbXplYmVkZWUiLCJhIjoiY2oyaWFmdXpxMDFlMTJwcjd4cTdieDdyMiJ9.K8da3SqjRr8_XDRxbrT1zQ'
 				containerStyle={{
 					height: "100vh",
+					width: "100vw"
 				}}
 				center={state.center}
 				onStyleLoad={this.finishSetupMapbox}
-				onClick={(map, ev) => console.log(ev.lngLat)}
+				onClick={this.onClick}
 				onZoom={this.onZoom}
 				hash={true}
 				>
@@ -143,7 +158,7 @@ class Map extends Component {
 					</Cluster>
 
 
-					{ state.selectedSpot && <SpotPopup zoom={state.zoom} spot={state.selectedSpot}/> }
+					{ (Object.keys(state.selectedSpots).length > 0) && Object.values(state.selectedSpots).map(spot => <SpotPopup zoom={state.zoom} spot={spot}/>) }
 
 			</ReactMapboxGl>;
 	}
