@@ -1,3 +1,5 @@
+@import '../vars.less';
+
 body {
 	overflow: hidden;
 }
@@ -5,7 +7,7 @@ body {
 .uiOverlay {
 	position: absolute;
     pointer-events: none;
-    z-index: 2;
+    z-index: @z-index-ui !important;
     
     width: 100%;
 }
@@ -98,6 +100,11 @@ body {
 }
 
 .clusterMarker, .marker {
-	pointer-events: auto;
-	z-index: 1!important;
+	z-index: @z-index-map-ui-elements !important;
+
+	&:hover {
+		pointer-events: auto;
+		cursor: pointer;
+	}
 }
+
