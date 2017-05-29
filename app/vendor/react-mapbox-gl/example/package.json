@@ -1,0 +1,26 @@
+{
+  "name": "react-mapbox-gl-example",
+  "version": "1.0.0",
+  "private": true,
+  "description": "An example for react-mapbox-gl",
+  "license": "MIT",
+  "homepage": "http://alex3165.github.io/react-mapbox-gl",
+  "scripts": {
+    "link": "./link-react-mapbox-gl.sh",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "dependencies": {
+    "immutable": "^3.8.1",
+    "react": "^15.5.3",
+    "react-dom": "^15.5.3",
+    "react-mapbox-gl": "^1.9.3",
+    "xml2js": "^0.4.17"
+  },
+  "devDependencies": {
+    "gh-pages": "^0.12.0",
+    "react-scripts": "^0.9.5"
+  }
+}

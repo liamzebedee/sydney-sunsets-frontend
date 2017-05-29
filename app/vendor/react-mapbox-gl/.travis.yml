@@ -1,0 +1,16 @@
+language: node_js
+
+node_js:
+  - '6'
+
+install: ./scripts/install.sh
+
+script: ./scripts/build.sh
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: example/build
+  on:
+    tags: true

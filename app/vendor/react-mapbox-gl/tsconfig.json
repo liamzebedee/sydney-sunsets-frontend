@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "outDir": "lib",
+    "module": "commonjs",
+    "target": "es5",
+    "lib":[
+      "es5",
+      "es2015",
+      "es2017",
+      "dom"
+    ],
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "rootDirs": ["src"],
+    "jsx": "react",
+    "removeComments": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "declaration": true,
+    "suppressImplicitAnyIndexErrors": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "lib",
+    "src/__tests__",
+    "example",
+    "lib"
+  ]
+}

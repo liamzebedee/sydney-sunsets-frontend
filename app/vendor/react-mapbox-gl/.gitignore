@@ -1,0 +1,12 @@
+.DS_Store
+.vscode
+
+vendor/
+lib/
+dist/
+es/
+www/
+node_modules/
+bundle.js
+npm-debug.log
+yarn.lock
