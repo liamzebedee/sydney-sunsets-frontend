@@ -3,12 +3,17 @@ import style from './style-popup.less';
 import ReactMapboxGl, { Layer, Feature, Cluster, Marker, Popup } from "react-mapbox-gl";
 
 
+
+
 export class SpotPopup extends Component {
     getDirections = () => {
         let [ lng, lat ] = this.props.spot.coordinates;
-        let url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
-        let win = window.open(url, '_blank');
-        win.focus()
+        this.props.directionsToSpot(this.props.spot.coordinates);
+
+
+        // let url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+        // let win = window.open(url, '_blank');
+        // win.focus()
     }
 
     shareSpot = () => {
@@ -63,18 +68,23 @@ export class SpotPopup extends Component {
                     </g>
                 </g>
                 <g id="Group-3" transform="translate(0.000000, 297.000000)">
+                    <g class={style.button}>
                     <rect id="Rectangle-2" x="0" y="0" width="324" height="47"></rect>
-                    <text class={style.button} onClick={this.shareSpot} id="SHARE" font-family="HelveticaNeue-Bold, Helvetica Neue" font-size="16" font-weight="bold" letter-spacing="0.0802197829" fill="#F07E81">
+                    <text onClick={this.shareSpot} id="SHARE" font-family="HelveticaNeue-Bold, Helvetica Neue" font-size="16" font-weight="bold" letter-spacing="0.0802197829" fill="#F07E81">
                         <tspan x="72" y="30">SHARE</tspan>
                     </text>
                     <path d="M62.5953685,21.7648397 L53.6934762,14.25071 C53.0190904,13.6245325 52.2098275,14.25071 52.2098275,15.2525939 L52.2098275,19.0096588 C45.8706011,19.0096588 40.4755148,22.6414881 37.9128488,27.5256724 C36.9687087,29.1537339 36.4292001,30.9070308 36.0245686,32.6603277 C35.7548143,33.9126827 37.7779717,34.5388602 38.5872346,33.4117407 C41.5545321,29.0284984 46.5449869,26.148082 52.2098275,26.148082 L52.2098275,30.2808533 C52.2098275,31.2827373 53.0190904,31.9089148 53.6934762,31.2827373 L62.5953685,23.7686076 C63.1348772,23.2676656 63.1348772,22.2657817 62.5953685,21.7648397 Z" id="share" fill="#F07E81" fill-rule="nonzero"></path>
+                    </g>
+
+
+                    <g class={style.button}>
                     <g id="Bitmap">
                         <image x="172" y="14" width="20" height="20" xlinkHref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABGdBTUEAALGPC/xhBQAABVFJREFUWAnNmPtvFFUUx8+ZmX21FEvLqyRFeRbTIFiBRqVCDfH1O/7EDybEmJg0hoSQgA2ZUMPLBH7yEf4EG3/AH63aQkyAUkQQBFoQwiMCS1sr0HZ3Z+b4vbvsMrPd2XZxFrhkM/eee+aeD+ece+7tMD2H7epHZrRiXvIFSSYf8PPC993GjXrL4sU1ES3SwMyrhWjUSshh41kDxrdtq9L0inrWeZ2mSQsJNwlLFTt8IGGNjDwTQOWt1gWNc7Sos1wTrRlhbCaWJsDNIiadhQdE5GT9wYNjTxVwsM2crlXbi8CgQvg6i96M53xAVaYjqRJO8I/kdCJBF5Ws7IB3PzWnhWrtRUT6CoCsIjFeAcFSZpml7BfYBPdE+NcLfTJUNsDu9abRuNZaYLCxmpk2AK4Zxl5i4gpAPmq5Tlbw6ClniO2jrT0dlhIE5kGTTG3zFqquqKQ1OlOLkPEGES9hobmA0vMoCg5FaAwTx1FermUV/jeg2oVGJLJQ5ZTGtB7hWYP+bHguk1dZS1N4Iuw3HIdO1OzbN5JVfyLA8xvNcN0yu0FD6ARQ2H0rsfiLWLQCYFp28ZKeQjb0+0RSZ9zvlQR4c/v22lgo1ISwvcNkqNLQgEyaiRACyi+n3OaK9ofg/eNX4/Hbbq1JAW9v3VoZjcWWiRhrwdDKJMuFuA6eigUA5Wa5bLPVu+rQoZRbWBBQJfxnn6fqiUOvwjdvI6fWwVvzUUCrAKUDrgxN/jBSqf78hT2AN7aYNdiFq7AL1wmH3gLQyyiaMwCVyauygAFJKIE87q3eu/efgoB329uXoGa9C4oWhHElcqEeLLFMWpWLyoNy3WLrbBrVI0YdHNq5830cOfuAsRRAETVfnhDmWc4OM0fbKS2ZnBBepWLgsN4EsOVZ/af+ZIkjxD+7a5+bQUP1/h6/W27hU+0LX3FsOu5nU+u6dP6ww/ZmEvkR/5NBZGzSTzl4uYwjwicG7w8O+K2d2wF3duyYEzKMJnL0lazJIuzgeSgv01FeKqEUxQJhbJ4ITowYdlwV0iLkt+hU5YjcDVwM2mbs2nXY750coFtB3UZWNI9VpnQ9GrLDETtkxQzHiDlMUZSgaQCtA+BC/F7DAqqAoxSV2OA6OOCHpJ34ZM7u3Xf83vbUwaxSa49pUQ+NYKx+BdtAW1ukuqqqJqSF34TCx4DckKuXBd/wCgE3jnQ6+s3ucNw74x0V9KBXZdIRx9vbl4bYOID69MGk2jkF6bfE3jSzo+NkTlSg82Q3D+9C8tUXxoDDzrfwyF3vlM9IhVfoLI62yz4aOXEQgISz20mkUqpUdOdWLtZhGUaIj+BoGy6mpuYCAVQLXTwWGUaZ6lP9KbR+jexjU9ALDjC9sdi5itCpa7t/w8UAOr2jd/QL/kqPZwLzoFoSiXUPdfL+4+Un9hDa2wDsmnfIHJ04O1ESKKDl6A8z5WOiobQkc60/l3KSRXeu++1AAXWhcZxACbcBdx/w+BgkPcUKs1tf9QMFtDR87mHxXNnzDF63HDqaJys6DBTQSBnKez6XDXGQpUecYfqzKFHeZKCA8E4SIfbbxUPEzk+zvzYf5DEUHQYKGNbHlQf/LWQRF4wLZNu/F5orJgsU8NaV6EPk4ITjDifbKK5tv3T1998sBlNoLlDAxk5T5d9fyLX0hx+XwWskdveHnZ3q60FJLVDAjGXntConOQq4D/1TViLxW05WQidwQGdcOwX751wMSXK4e9b+/UVPGJe+pxs4YO1+8xY59CWOs7+VJeTkCScpXR6rJQym9N2uhPXSqu9p66/MnU+XMMBV3t5Ts2eX7x9Fk639H8zA2Nm9nYXXAAAAAElFTkSuQmCC"></image>
                         
                     </g>
-                    <text class={style.button} onClick={this.getDirections} id="DIRECTIONS" font-family="HelveticaNeue-Bold, Helvetica Neue" font-size="16" font-weight="bold" letter-spacing="0.0802197829" fill="#F07E81">
+                    <text onClick={this.getDirections} id="DIRECTIONS" font-family="HelveticaNeue-Bold, Helvetica Neue" font-size="16" font-weight="bold" letter-spacing="0.0802197829" fill="#F07E81">
                         <tspan x="199" y="30">DIRECTIONS</tspan>
-                    </text>
+                    </text></g>
                 </g>
                 <g id="Group-2" transform="translate(30.000000, 183.000000)">
                     <text id="4.3km-away" font-family="HelveticaNeue, Helvetica Neue" font-size="13" font-weight="normal" letter-spacing="0.0651785731" fill-opacity="0.6" fill="#000000">

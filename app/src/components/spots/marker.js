@@ -5,55 +5,55 @@ import ReactMapboxGl, { Layer, Feature, Cluster, Marker } from "react-mapbox-gl"
 
 export class SpotClusterMarker {
     onClick = () => {
-        this.props.onClick({ coordinates: this.props.coordinates })
+        this.props.onClick(this.props)
     }
 
 	render(props, state) {
-        let clusterSize = null;
-        let clusterSizeStr = ''+props.clusterSize;
+        let size = props.clusterSize;
+        const factor = 10;
+        let sizeRounded = Math.round(size / factor, 1) * factor;
 
-        if(props.clusterSize > 9) {
-            clusterSize = [
-                <tspan x="3.21888991" y="15">{clusterSizeStr[0]}</tspan>,
-                <tspan x="9.10694655" y="15">{clusterSizeStr[1]}</tspan>
-            ];
+        let $clusterSize = null;
+        if(sizeRounded < 10) {
+            $clusterSize = [(<text id="5">
+                        <tspan x="0.494628906" y="19.5">{size}</tspan>
+                    </text>),
+                    <text id="+">
+                        <tspan x="11.2441406" y="18.5">+</tspan>
+                    </text>];
         } else {
-            clusterSize = <tspan x="6" y="15">{clusterSizeStr}</tspan>;
+            $clusterSize = [(<text id="10">
+                        <tspan x="0.489257812" y="19.5">{sizeRounded}</tspan>
+                    </text>),
+                    <text id="+">
+                        <tspan x="19.2441406" y="18.5">+</tspan>
+                    </text>];
         }
 
 		return <Marker coordinates={props.coordinates} className={style.clusterMarker} onClick={this.onClick}>
 
 
-<svg width="46px" height="55px" viewBox="0 0 46 55" version="1.1" >
+
+<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" >
     
-    <title>sunset spot cluster</title>
     <desc>Created with Sketch.</desc>
     <defs>
-        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="linearGradient-1">
-            <stop stop-color="#7C5EA7" offset="0%"></stop>
-            <stop stop-color="#CF7EA4" offset="50.3308355%"></stop>
-            <stop stop-color="#E17F97" offset="69.8932539%"></stop>
-            <stop stop-color="#FD8185" stop-opacity="0.999983003" offset="100%"></stop>
-        </linearGradient>
-        <path d="M5.95345583,5.61730423 C2.19722897,9.26864305 0.0559637324,14.2519498 0.000777573165,19.470806 C-0.103812411,30.3089373 10.3682597,42.4580283 15.9899714,49.5709576 C16.8361249,50.6373351 18.1238413,51.2650603 19.4911368,51.2776761 C20.8584323,51.290292 22.1576775,50.6864365 23.0236478,49.6358566 C28.7891706,42.6527252 39.5488652,30.6983312 39.666529,19.8991393 C39.725776,14.6735995 37.6888954,9.63928684 34.0051091,5.90648898 C30.3213228,2.17369113 25.2932346,0.0490378783 20.0297595,0.00110890769 C14.7731345,-0.0542619972 9.7096827,1.96596541 5.95345583,5.61730423 Z" id="path-2"></path>
-        <filter x="-17.6%" y="-9.8%" width="135.3%" height="127.3%" filterUnits="objectBoundingBox" id="filter-3">
+        <circle id="path-1" cx="24" cy="24" r="24"></circle>
+        <filter x="-20.8%" y="-16.7%" width="141.7%" height="141.7%" filterUnits="objectBoundingBox" id="filter-2">
             <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.584182518 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.285740859   0 0 0 0 0.285740859   0 0 0 0 0.285740859  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
         </filter>
     </defs>
     <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="sunset-spot-cluster">
-            <g id="Group-2" transform="translate(3.000000, 0.000000)">
-                <g id="Shape-Copy-9">
-                    <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlinkHref="#path-2"></use>
-                    <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlinkHref="#path-2"></use>
+        <g id="sunset-spot-cluster/circle" transform="translate(6.000000, 4.000000)">
+            <g id="Cluster">
+                <g id="Oval">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlinkHref="#path-1"></use>
+                    <use fill="#9A7AC7" fill-rule="evenodd" xlinkHref="#path-1"></use>
                 </g>
-                <g id="Group-3" transform="translate(10.000000, 12.000000)">
-                    <ellipse id="Oval-Copy-10" stroke="#9A7AC7" stroke-width="0.3" fill="#FFFFFF" cx="9.91694655" cy="9.97069694" rx="9.91694655" ry="9.97069694"></ellipse>
-                    <text id="12" font-family="Helvetica-Bold, Helvetica" font-size="13.5" font-weight="bold" letter-spacing="-1.62" fill="#6E588F">
-                        {clusterSize}
-                    </text>
+                <g id="Group-2" transform="translate(10.000000, 10.500000)" font-size="18" font-family="Helvetica-Bold, Helvetica" letter-spacing="-2" fill="#FFFFFF" font-weight="bold">
+                    {$clusterSize}
                 </g>
             </g>
         </g>
@@ -68,7 +68,7 @@ export class SpotClusterMarker {
 
 export class SpotMarker extends Component {
 	onClick = () => {
-		this.props.onClick({ coordinates: this.props.coordinates })
+		this.props.onClick(this.props)
 	}
 
 	render(props, state) {

@@ -112,7 +112,7 @@ module.exports = {
 				use: 'raw-loader'
 			},
 			{
-				test: /\.(svg|woff2?|ttf|eot|jpe?g|png|gif)(\?.*)?$/i,
+				test: /\.(svg|woff2?|ttf|eot|otf|jpe?g|png|gif)(\?.*)?$/i,
 				use: ENV==='production' ? 'file-loader' : 'url-loader'
 			}
 		]
@@ -205,11 +205,12 @@ module.exports = {
 
 	devServer: {
 		port: process.env.PORT || 8080,
-		host: 'localhost',
+		host: '0.0.0.0',
 		publicPath: '/',
 		contentBase: './src',
 		historyApiFallback: true,
 		open: true,
+		disableHostCheck: true,
 		proxy: {
 			// OPTIONAL: proxy configuration:
 			// '/optional-prefix/**': { // path pattern to rewrite

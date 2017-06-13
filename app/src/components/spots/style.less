@@ -6,7 +6,6 @@ body {
 
 .uiOverlay {
 	position: absolute;
-    pointer-events: none;
     z-index: @z-index-ui !important;
     
     width: 100%;
@@ -28,19 +27,34 @@ body {
 	align-items: center;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	padding-left: 34px;
-	padding-right: 34px;
+	padding-left: 35px;
+	padding-right: 35px;
 
 	opacity: 1;
 	box-shadow: 0 2px 8px 1px rgba(33,33,33,0.50);
 }
 
+.headerLeft,
+.headerCenter,
+.headerRight {
+	flex: 1;
+	display: flex;	
+}
+
 .headerLeft {
-	//align-self: flex-start;
+	justify-content: flex-start;
+}
+.headerCenter {
+	justify-content: center;
 }
 .headerRight {
-	//align-self: flex-end;
+	justify-content: flex-end;
 }
+
+.personProfile {
+	padding-right: 10px;
+}
+
 
 .sunsetAt {
 	display: inline-block;
@@ -81,7 +95,7 @@ body {
 
 .appInfo_title {
 	/* Sydney Sunsets: */
-	font-family: AdobeGothicStd-Bold;
+	font-family: AdobeGothicStd-Bold, HelveticaNeue-Bold;
 	font-size: 28px;
 	color: #FFFFFF;
 	letter-spacing: 0.1px;
@@ -116,4 +130,59 @@ body {
 .clusterLabel {
 	text-align: center;
 }
+
+.actionMenu {
+	width: 174px;
+	height: 74px;
+	transition: all 350ms;
+
+	position: absolute;
+    right: 0;
+
+	/* Rectangle 9: */
+	background: #FFFFFF;
+	box-shadow: 0 3px 10px 0 rgba(33,33,33,0.50);
+	border-radius: 10px;
+	
+	font-family: HelveticaNeue-Bold;
+	font-size: 16px;
+	color: #000000;
+	letter-spacing: 0.08px;
+
+	/* Say hi!: */
+	font-family: HelveticaNeue-Bold;
+	font-size: 16px;
+	color: #000000;
+	letter-spacing: 0.08px;
+
+
+    border-top-left-radius: 0;
+    border-top-right-radius: 0px;
+}
+
+.actionMenuDots {
+	user-select: none;
+	margin-top: 3px;
+}
+
+.actionMenuDotsCtn {
+	cursor: pointer;
+	width: 2em;
+    text-align: center;
+
+    transition: all 200ms;
+    &:hover,
+    &.actionMenuActive {
+    	opacity: 0.8;
+    }
+}
+
+
+
+.actionMenuHidden {
+	visibility: hidden;
+	opacity: 0;
+}
+
+
 
