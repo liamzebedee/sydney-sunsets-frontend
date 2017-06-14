@@ -43,9 +43,24 @@ const SYDNEY_MAP_BOUNDS = [
     [150.87186147761867, -33.70941832265211]
 ];
 
-class UIOverlay extends Component {
-	render(props) {
-		return <div class={style.uiOverlay}>{props.children}</div>;
+const WaitingForDrop = (props, state) => {
+	return <div class={style.waitingForDrop}>
+		<img src='/assets/sunset-spot.svg' width='19' height='24.18'/>
+		<span>I'm waiting for the drop</span>
+	</div>;
+}
+
+class UIAlert extends Component {
+	render(props, state) {
+		let styles = {
+			[style.uiAlertCtn]: true,
+			[style.uiAlertShown]: props.shown,
+			[style.uiAlertHidden]: !props.shown
+		}
+
+		return <div class={onlyTruthyStyles(styles)}>
+			<div class={style.uiAlert}>{props.children}</div>
+		</div>
 	}
 }
 
@@ -61,31 +76,43 @@ class ActionMenu extends Component {
 	}
 
 	render(props, state) {
-		let styles = {
+		let actionMenuStyles = {
 			[style.actionMenu]: true,
 			[style.actionMenuHidden]: props.hidden
 		};
 
 		return <div>
-			<div class={onlyTruthyStyles(styles)}>
-				<div onClick={this.addSpot}>Add spot</div>
+			<div class={onlyTruthyStyles(actionMenuStyles)}>
+				{props.children}
 			</div>
 		</div>;
 	}
 }
 
-class Header extends Component {
+class UIOverlay extends Component {
 	state = {
 		sunsetTime: sunsetTime,
-		actionMenuShown: false
+		actionMenuShown: false,
+		addingSpot: false
+	}
+
+	componentDidMount() {
 	}
 
 	toggleActionMenu = () => {
 		this.setState({ actionMenuShown: !this.state.actionMenuShown })
 	}
 
+	addSpot = () => {
+		this.setState({ actionMenuShown: false, addingSpot: true })
+	}
+
+	sayHi = () => {
+		this.setState({ actionMenuShown: false })
+	}
+
 	render(props, state) {
-		return <div>
+		return <div class={style.uiOverlay}>
 			<div class={style.headerCtn}>
 				<div class={style.header}>
 					<div class={style.headerLeft}>
@@ -101,12 +128,23 @@ class Header extends Component {
 
 					<div class={style.headerRight}>
 						<img class={style.personProfile} src='/assets/person-profile.png'/>
-						<div onClick={this.toggleActionMenu} class={style.actionMenuDotsCtn + (state.actionMenuShown ? ' '+style.actionMenuActive : '' )}><img class={style.actionMenuDots} src='/assets/action-menu.svg'/></div>
+						<div onMouseEnter={this.toggleActionMenu} class={style.actionMenuDotsCtn + (state.actionMenuShown ? ' '+style.actionMenuActive : '' )}><img class={style.actionMenuDots} src='/assets/action-menu.svg'/></div>
 					</div>
 				</div>
 			</div>
 
-			<ActionMenu hidden={!state.actionMenuShown}/>
+			<ActionMenu hidden={!state.actionMenuShown}>
+				<div class={style.actionMenuItem} onClick={this.addSpot}>
+					<img src='/assets/plus.svg'/> Add spot
+				</div>
+				<div class={style.actionMenuItem} onClick={this.sayHi}>
+					<img src='/assets/chat.png'/> Say hi
+				</div>
+			</ActionMenu>
+
+			<UIAlert shown={state.addingSpot}>
+				<WaitingForDrop/>
+			</UIAlert>
 		</div>;
 	}
 }
@@ -238,6 +276,8 @@ class Map extends Component {
 
 
 					{state.selectedSpot && <SpotPopup directionsToSpot={this.directionsToSpot} zoom={state.zoom} spot={state.selectedSpot}/> }
+
+					{props.children}
 
 			</ReactMapboxGl>;
 	}
@@ -437,12 +477,9 @@ export default class SearchSpots extends Component {
 	render(props, state) {
 		return (
 			<div>
-				<UIOverlay>
-					<Header/>
-					
-				</UIOverlay>
-
-				<Map spots={state.spots}/>
+				<Map spots={state.spots}>
+					<UIOverlay/>
+				</Map>
 			</div>
 		);
 	}

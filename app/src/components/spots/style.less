@@ -5,13 +5,19 @@ body {
 }
 
 .uiOverlay {
-	position: absolute;
-    z-index: @z-index-ui !important;
-    
+    position: absolute;
     width: 100%;
+    height: 100%;
+    pointer-events: none;
 }
 
+@header-height: 60px;
 .headerCtn {
+	pointer-events: initial;
+
+	position: relative;
+	z-index: @z-index-ui !important;
+
     background: url(/assets/Background.png);
     background-size: 100vw 60px;
     background-origin: content-box;
@@ -21,7 +27,7 @@ body {
 .header {
 	display: flex;
 	flex-direction: row;
-	height: 60px;
+	height: @header-height;
 
 	justify-content: space-between;
 	align-items: center;
@@ -133,11 +139,15 @@ body {
 
 .actionMenu {
 	width: 174px;
-	height: 74px;
-	transition: all 350ms;
+	z-index: @z-index-ui !important;
+	pointer-events: initial;
 
+	transition: all 200ms;
 	position: absolute;
     right: 0;
+
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 
 	/* Rectangle 9: */
 	background: #FFFFFF;
@@ -158,6 +168,38 @@ body {
 
     border-top-left-radius: 0;
     border-top-right-radius: 0px;
+}
+
+.actionMenuItem {
+	display: flex;
+	flex-direction: row;
+	flex: 1;
+	align-content: center;
+	align-items: center;
+
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	padding-left: 12px;
+	padding-right: 12px;
+
+	transition: background 350ms ease-in-out;
+	user-select: none;
+
+	&:first-child {
+		
+	}
+	&:last-child {
+		
+	}
+
+	&:hover {
+		background: #FFEDEE;
+		cursor: pointer;
+	}
+
+	img {
+		padding-right: 0.5em;
+	}
 }
 
 .actionMenuDots {
@@ -185,4 +227,53 @@ body {
 }
 
 
+.uiAlertCtn {
+	position: relative;
+	display: flex;
+	flex-direction: column;
 
+	transition: all 350ms ease-in-out;
+	pointer-events: none;
+
+
+	z-index: @z-index-ui !important;
+}
+.uiAlertShown {
+	margin-top: 1em;
+}
+.uiAlertHidden {
+	visibility: hidden;
+	margin-top: 0em;
+}
+
+.uiAlert {
+	align-self: center;
+	background: #FFFFFF;
+	box-shadow: 0 2px 2px 0 rgba(148,148,148,0.50);
+	border-radius: 100px;
+	padding: 8px 16px;
+	pointer-events: initial;
+
+	font-family: HelveticaNeue-Bold;
+	font-size: 16px;
+	color: #6E588F;
+	letter-spacing: 0.08px;
+}
+
+
+.waitingForDrop {
+    img {
+	    vertical-align: middle;
+    }
+    span {
+	    top: 2px;
+	    position: relative;
+	    padding-left: 10px;
+    }
+}
+
+.mapbox-gl-canvas-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

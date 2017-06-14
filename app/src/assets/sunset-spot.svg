@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="29px" height="37px" viewBox="0 0 29 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>Sunset</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#7C5EA7" offset="0%"></stop>
+            <stop stop-color="#CF7EA4" offset="50.3308355%"></stop>
+            <stop stop-color="#E17F97" offset="69.8932539%"></stop>
+            <stop stop-color="#FD8185" stop-opacity="0.999983003" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop" transform="translate(-1202.000000, -162.000000)">
+            <g id="Group-4" transform="translate(277.000000, 160.000000)">
+                <g id="sunset-spot" transform="translate(924.000000, 0.000000)">
+                    <path d="M5.93228701,6.02793694 C3.26272833,8.64173461 1.74092643,12.2090167 1.7017055,15.944916 C1.62737317,23.703353 9.06989783,32.4002358 13.0652606,37.4920005 C13.6666238,38.255363 14.5818067,38.7047177 15.5535466,38.7137488 C16.5252865,38.7227798 17.4486629,38.2905121 18.0641099,37.5384582 C22.1616797,32.5396089 29.8086182,23.9820993 29.8922421,16.2515368 C29.9343491,12.5108531 28.4867336,8.90705862 25.8686586,6.23494879 C23.2505836,3.56283897 19.6771103,2.04191364 15.9363469,2.00760386 C12.200452,1.9679668 8.6018457,3.41413927 5.93228701,6.02793694 Z" id="Shape-Copy-9" fill="url(#linearGradient-1)"></path>
+                    <circle id="Oval-Copy-10" stroke="#9A7AC7" stroke-width="0.3" fill="#FFFFFF" cx="15.7228529" cy="17.2233748" r="6.57175592"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

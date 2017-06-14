@@ -4,7 +4,7 @@ import { h, render } from 'preact';
 import './style';
 
 if (module.hot) {
-	require('preact/devtools');
+	// require('preact/devtools');
 }
 
 let root;
