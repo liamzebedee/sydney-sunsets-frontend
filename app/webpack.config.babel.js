@@ -32,7 +32,7 @@ module.exports = {
 			style: path.resolve(__dirname, "src/style"),
 			'react': 'preact-compat',
 			'react-dom': 'preact-compat',
-			'react-mapbox-gl': path.resolve(__dirname, "vendor/react-mapbox-gl/lib/index"),
+			// 'react-mapbox-gl': path.resolve(__dirname, "vendor/react-mapbox-gl/lib/index"),
 		}
 	},
 
@@ -138,7 +138,7 @@ module.exports = {
 	]).concat(ENV==='production' ? [
 		new webpack.optimize.UglifyJsPlugin({
 			output: {
-				comments: false
+				comments: false,
 			},
 			compress: {
 				unsafe_comps: true,
