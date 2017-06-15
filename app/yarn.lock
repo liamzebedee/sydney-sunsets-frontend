@@ -5215,9 +5215,9 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-"react-mapbox-gl@https://github.com/liamzebedee/react-mapbox-gl":
-  version "1.11.2"
-  resolved "https://github.com/liamzebedee/react-mapbox-gl#315cfd719aff17281b9860e4af573e4e4bb247ca"
+react-mapbox-gl@^1.12.0:
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/react-mapbox-gl/-/react-mapbox-gl-1.12.0.tgz#5f2c74533eb399d320eae36c50b9f5ab31513a60"
   dependencies:
     "@turf/bbox" "^4.3.0"
     "@turf/helpers" "^4.3.0"
