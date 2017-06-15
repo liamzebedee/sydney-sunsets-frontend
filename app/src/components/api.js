@@ -4,8 +4,9 @@ import Swagger from 'swagger-client';
 
 var _api = null;
 
-if (process.env.NODE_ENV==='production') {
-	spec.host = 'https://sydneysunsets.com/api/';
+if (process.env.NODE_ENV === 'production') {
+	spec.host = 'api.sydneysunsets.com';
+	spec.schemes = ['https'];
 }
 
 
