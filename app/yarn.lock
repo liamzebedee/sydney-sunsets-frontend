@@ -5007,7 +5007,7 @@ preact-jsx-chai@^2.2.1:
   dependencies:
     preact-render-to-string "^3.2.0"
 
-preact-render-to-string@^3.2.0, preact-render-to-string@^3.6.0:
+preact-render-to-string@^3.2.0, preact-render-to-string@^3.6.0, preact-render-to-string@^3.6.3:
   version "3.6.3"
   resolved "https://registry.yarnpkg.com/preact-render-to-string/-/preact-render-to-string-3.6.3.tgz#481d0d5bdac9192d3347557437d5cd00aa312043"
   dependencies:
@@ -5215,8 +5215,9 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-"react-mapbox-gl@file:./vendor/react-mapbox-gl":
+"react-mapbox-gl@https://github.com/liamzebedee/react-mapbox-gl":
   version "1.11.1"
+  resolved "https://github.com/liamzebedee/react-mapbox-gl#315cfd719aff17281b9860e4af573e4e4bb247ca"
   dependencies:
     "@turf/bbox" "^4.3.0"
     "@turf/helpers" "^4.3.0"

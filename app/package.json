@@ -99,7 +99,7 @@
     "preact-router": "^2.5.1",
     "promise-polyfill": "^6.0.2",
     "proptypes": "^1.0.0",
-    "react-mapbox-gl": "file:./vendor/react-mapbox-gl",
+    "react-mapbox-gl": "https://github.com/liamzebedee/react-mapbox-gl",
     "serve": "^5.1.4",
     "suncalc": "^1.8.0",
     "swagger-client": "^3.0.13"
