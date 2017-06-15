@@ -8,12 +8,6 @@ import style from './style.less';
 
 // http://chenglou.github.io/react-motion/demos/demo7-water-ripples/
 export default class Home extends Component {
-	componentDidMount() {
-		API().then(api => {
-			console.log(api.spots.list().then(res => console.log(res.obj)))
-		})
-	}
-
 	letsChill = () => {
 		Router.route('/spots')
 	}

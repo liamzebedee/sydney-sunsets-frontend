@@ -1,9 +1,13 @@
 // localhost:8000/spec/ui/?format=openapi
 import spec from './swagger.json';
-
 import Swagger from 'swagger-client';
 
 var _api = null;
+
+if (process.env.NODE_ENV==='production') {
+	spec.host = 'https://sydneysunsets.com/api/';
+}
+
 
 function API() {
 	if(_api !== null) {
@@ -14,6 +18,8 @@ function API() {
 		return new Promise((resolve, reject) => {
 			Swagger({ spec }).then(swagger => {
 				_api = swagger.apis;
+				console.log("API created!")
+				console.log(_api)
 				resolve(_api)
 			})
 		})

@@ -101,10 +101,10 @@ export class SpotPopup extends Component {
                         <tspan x="20" y="100">nearby</tspan>
                     </text>
                     <text id="Chill-Ridge" font-family="AdobeGothicStd-Bold, Adobe Gothic Std" font-size="20" font-weight="bold" letter-spacing="0.100274712" fill="#000000">
-                        <tspan x="2" y="18">Chill Ridge</tspan>
+                        <tspan x="2" y="18">{props.spot.name}</tspan>
                     </text>
                     <text id="Circular-Quay" font-family="Helvetica-Light, Helvetica" font-size="18" font-weight="300" letter-spacing="0.126346126" fill="#000000">
-                        <tspan x="2.32875018" y="41">Circular Quay</tspan>
+                        <tspan x="2.32875018" y="41">{props.spot.suburb}</tspan>
                     </text>
                     <g id="icons/cloudsun" transform="translate(0.000000, 55.000000)">
                         <g id="Cloudy">

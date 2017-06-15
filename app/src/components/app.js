@@ -2,7 +2,7 @@ import { h, Component } from 'preact';
 import { Router } from 'preact-router';
 
 import Home from './home';
-import SearchSpots from './spots';
+import SearchSpots, { SearchSpotsList } from './spots';
 
 import 'normalize.css';
 
@@ -21,7 +21,7 @@ export default class App extends Component {
 				<Router onChange={this.handleRoute}>
 					<Home path="/" />
 					<SearchSpots path='/spots' />
-					<SearchSpots path='/spots/:id' />
+					<SearchSpotsList path='/list/:list_id' />
 				</Router>
 			</div>
 		);
