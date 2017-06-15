@@ -5216,7 +5216,7 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     strip-json-comments "~2.0.1"
 
 "react-mapbox-gl@https://github.com/liamzebedee/react-mapbox-gl":
-  version "1.11.1"
+  version "1.11.2"
   resolved "https://github.com/liamzebedee/react-mapbox-gl#315cfd719aff17281b9860e4af573e4e4bb247ca"
   dependencies:
     "@turf/bbox" "^4.3.0"
