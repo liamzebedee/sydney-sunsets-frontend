@@ -4,6 +4,7 @@
   "description": "Ready-to-go Preact starter project powered by webpack.",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --progress",
+    "haveagreattime": "npm run prestart && npm run start",
     "start": "serve build -s -c 1",
     "prestart": "npm run build",
     "build": "cross-env NODE_ENV=production webpack -p --progress",
@@ -94,7 +95,7 @@
     "normalize.css": "^7.0.0",
     "preact": "^8.1.0",
     "preact-compat": "^3.16.0",
-    "preact-render-to-string": "^3.6.0",
+    "preact-render-to-string": "^3.6.3",
     "preact-router": "^2.5.1",
     "promise-polyfill": "^6.0.2",
     "proptypes": "^1.0.0",

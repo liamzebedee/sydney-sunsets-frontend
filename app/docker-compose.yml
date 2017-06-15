@@ -1,0 +1,16 @@
+app:
+  build: .
+  volumes_from:
+    - yarn-cache
+  ports:
+    - "42001:42001"
+  environment:
+    - NODE_ENV=production
+    - PORT=42001
+
+yarn-cache:
+  image: busybox
+  volumes:
+    - /root/.yarn-cache
+  environment:
+    - NODE_ENV=production
