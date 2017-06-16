@@ -1,5 +1,6 @@
 app:
   build: .
+  command: bash
   volumes:
     - .:/code
   volumes_from:
