@@ -1,5 +1,7 @@
 app:
   build: .
+  volumes:
+    - .:/code
   volumes_from:
     - yarn-cache
   ports:
