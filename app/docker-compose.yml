@@ -10,6 +10,7 @@ app:
   environment:
     - NODE_ENV=production
     - PORT=42001
+  tty: true
 
 yarn-cache:
   image: busybox
@@ -17,3 +18,4 @@ yarn-cache:
     - /root/.yarn-cache
   environment:
     - NODE_ENV=production
+  tty: true
