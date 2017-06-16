@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+echo "adasd" > ~/log
+unset GIT_INDEX_FILE
+cd /home/liam/frontend
+git --work-tree=/home/liam/frontend --git-dir=/home/liam/frontend.git checkout -f
+echo "Updated work tree" > ~/log
+cd app
+docker-compose exec app npm run build
+echo "Built" > ~/log
+yes | cp -rf ./build/** ../../frontend-live

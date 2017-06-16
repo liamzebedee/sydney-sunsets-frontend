@@ -1,0 +1,41 @@
+Thanks to:
+ - https://grafana.com/blog/2015/05/05/our-docker--screen-development-environment/
+
+[SERVER]
+
+git init --bare backend-git
+cd backend-git 
+git config receive.denyCurrentBranch ignore
+cd ..
+mkdir backend
+
+git init --bare frontend-git
+cd frontend-git 
+git config receive.denyCurrentBranch ignore
+cd ..
+mkdir frontend
+mkdir frontend-live
+
+# Copy the post-hook for each repo.
+nano frontend.git/hooks/post-update
+chmod +x frontend.git/hooks/post-update
+
+
+
+[LOCAL]
+
+git remote add chilltech ssh://liam@chilltech.ciphersink.net/~/backend.git
+git remote add chilltech ssh://liam@chilltech.ciphersink.net/~/frontend.git
+
+git push chilltech master
+
+
+
+[SERVER]
+
+[[ Backend ]]
+docker-compose up -d --build
+screen -S backend-interactive docker-compose exec web bash
+
+[[ Frontend ]]
+NODE_ENV=development $HOME/.yarn/bin/yarn install --pure-lockfile

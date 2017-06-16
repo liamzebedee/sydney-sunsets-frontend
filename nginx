@@ -1,0 +1,74 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name www.sydneysunsets.com;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name api.sydneysunsets.com;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    server_name www.sydneysunsets.com;  
+    
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    ssl_certificate /etc/letsencrypt/live/www.sydneysunsets.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/www.sydneysunsets.com/privkey.pem;
+    
+
+
+    # This is for Lets Encrypt
+    #listen 80;
+
+    #root /var/www/;
+    #location ^~ /.well-known/acme-challenge/ {
+    #    allow all;
+    #    default_type "text/plain";
+    #}
+
+    root /home/liam/frontend-live/;
+
+    gzip_static on;
+
+    location / {
+      try_files $uri $uri/ /index.html;
+    }
+
+    # Attempt to load static files, if not found route to @rootfiles
+    location ~ (.+)\.(html|json|txt|js|css|jpg|jpeg|gif|png|svg|ico|eot|otf|woff|woff2|ttf)$ {
+      try_files $uri @rootfiles;
+    }
+
+    # Check for app route "directories" in the request uri and strip "directories"
+    # from request, loading paths relative to root.
+    location @rootfiles {
+      rewrite ^/(?:foo/bar/baz|foo/bar|foo|tacos)/(.*) /$1 redirect;
+    }
+}
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+
+    ssl_certificate /etc/letsencrypt/live/api.sydneysunsets.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/api.sydneysunsets.com/privkey.pem;
+
+    server_name api.sydneysunsets.com;
+
+    location / {
+        add_header Access-Control-Allow-Origin https://www.sydneysunsets.com;
+        add_header Access-Control-Allow-Methods "POST, GET, OPTIONS, HEAD";
+
+        proxy_pass http://localhost:42000/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+        #proxy_redirect    off;
+    }
+}
