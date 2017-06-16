@@ -16,7 +16,7 @@ export default class Home extends Component {
 		return (
 			<div class={style.home}>
 				<div class={style.container}>
-					<div class={style.title}>Sydney Sunsets</div>
+					<div class={style.title}>Sydney Sunsets (beta)</div>
 					<Button onClick={this.letsChill}>{"Let’s chill"}</Button>
 				</div>
 			</div>
