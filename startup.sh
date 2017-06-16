@@ -1,2 +1,2 @@
 cd app
-$HOME/docker-compose up .
+$HOME/docker-compose up
