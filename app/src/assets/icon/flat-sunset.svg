@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="36px" viewBox="0 0 28 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/flat-sunset</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="App" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop" transform="translate(-678.000000, -472.000000)">
+            <g id="Group-4" transform="translate(257.000000, 162.000000)">
+                <g id="icon/flat-sunset" transform="translate(421.000000, 310.000000)">
+                    <g id="Sunset">
+                        <path d="M4.20232081,3.94366912 C1.55094138,6.50711798 0.0395026962,10.0056846 0.000548859685,13.6696203 C-0.0732772806,21.278609 7.31856502,29.8079663 11.2867201,34.8016498 C11.8839881,35.5503079 12.7929387,35.9910069 13.7580612,35.9998639 C14.7231837,36.008721 15.6402721,35.5847799 16.251528,34.8472126 C20.321194,29.9446547 27.9160582,21.5519858 27.9991126,13.9703349 C28.0409328,10.3017068 26.6031753,6.76733114 24.002929,4.14669337 C21.4026827,1.5260556 17.8535441,0.0344273976 14.1382547,0.000778516678 C10.4278007,-0.0380950281 6.85370024,1.38022026 4.20232081,3.94366912 Z" id="Shape-Copy-9" fill="#9A7AC7"></path>
+                        <circle id="Oval-Copy-10" stroke="#9A7AC7" stroke-width="0.3" fill="#FFFFFF" cx="14" cy="15" r="7"></circle>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

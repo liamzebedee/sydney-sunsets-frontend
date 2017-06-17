@@ -226,18 +226,22 @@ body {
 	opacity: 0;
 }
 
+.sydsun-ui-behaviour {
+	transition: all 350ms ease-in-out;
+	z-index: @z-index-ui !important;
+}
+
+.sydsun-ui-interactable {
+	pointer-events: initial;
+}
 
 .uiAlertCtn {
 	position: relative;
 	display: flex;
 	flex-direction: column;
-
-	transition: all 350ms ease-in-out;
-	pointer-events: none;
-
-
-	z-index: @z-index-ui !important;
+	.sydsun-ui-behaviour;
 }
+
 .uiAlertShown {
 	margin-top: 1em;
 }
@@ -260,6 +264,28 @@ body {
 	letter-spacing: 0.08px;
 }
 
+.center-exactly-middle {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.placeSpotUI {
+	.sydsun-ui-behaviour;
+	.center-exactly-middle;
+}
+.placeSpotButtonOverlay img {
+	.sydsun-ui-interactable;	
+}
+.placeSpotPin {
+	text-align: center;
+}
+.placeSpotPin img {
+	.sydsun-ui-interactable;
+
+}
+
 
 .waitingForDrop {
     img {
@@ -271,6 +297,9 @@ body {
 	    padding-left: 10px;
     }
 }
+
+
+
 
 .mapbox-gl-canvas-container {
     position: absolute;

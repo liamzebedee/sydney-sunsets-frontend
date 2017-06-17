@@ -44,12 +44,34 @@ const SYDNEY_MAP_BOUNDS = [
     [150.87186147761867, -33.70941832265211]
 ];
 
+class PlaceSpotUI extends Component {
+	render(props, state) {
+		return <div class={style.placeSpotUI}>
+			<PlaceSpotButtonOverlay/>
+			<PlaceSpotPin/>
+		</div>;
+	}
+}
+
+const PlaceSpotButtonOverlay = (props, state) => {
+	return <div class={style.placeSpotButtonOverlay}>
+		<img src='/assets/icon/placespot.svg'/>
+	</div>
+}
+
+const PlaceSpotPin = (props, state) => {
+	return <div class={style.placeSpotPin}>
+		<img src='/assets/icon/flat-sunset.svg'/>
+	</div>
+}
+
 const WaitingForDrop = (props, state) => {
 	return <div class={style.waitingForDrop}>
 		<img src='/assets/sunset-spot.svg' width='19' height='24.18'/>
 		<span>I'm waiting for the drop</span>
 	</div>;
 }
+
 
 class UIAlert extends Component {
 	render(props, state) {
@@ -59,8 +81,10 @@ class UIAlert extends Component {
 			[style.uiAlertHidden]: !props.shown
 		}
 
+		let inner = props.naked ? props.children : <div class={style.uiAlert}>{props.children}</div>;
+
 		return <div class={onlyTruthyStyles(styles)}>
-			<div class={style.uiAlert}>{props.children}</div>
+			{inner}
 		</div>
 	}
 }
@@ -95,10 +119,14 @@ class UIOverlay extends Component {
 	state = {
 		sunsetTime: sunsetTime,
 		actionMenuShown: false,
-		addingSpot: false
+		addingSpot: false,
+		// addingSpot: true
 	}
 
 	componentDidMount() {
+		setTimeout(()=>{
+			this.setState({ addingSpot: true})
+		}, 200)
 	}
 
 	toggleActionMenu = () => {
@@ -144,9 +172,10 @@ class UIOverlay extends Component {
 				</div>
 			</ActionMenu>
 
-			<UIAlert shown={state.addingSpot}>
-				<WaitingForDrop/>
+			<UIAlert naked={true} shown={state.addingSpot}>
 			</UIAlert>
+
+			<PlaceSpotUI/>
 		</div>;
 	}
 }
@@ -271,7 +300,8 @@ class Map extends Component {
 				movingMethod='easeTo'
 				>
 
-					<ZoomControl position='bottomRight'/>
+					{//<ZoomControl position='bottomRight'/>
+					}
 
 					{/*
 					<Source id="cloud-layer-src" tileJsonSource={CLOUD_RASTER_SOURCE_OPTIONS} />
